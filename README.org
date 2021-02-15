@@ -1,0 +1,73 @@
+#+title: Org knit
+#+author: TEC
+#+property: header-args:yaml :tangle "demo.yml"
+
+Let someone else take care of keeping up to date tangled/woven versions of your
+Org files for public consumption.
+
+#+begin_src yaml
+- name: Export org files
+  uses: tecosaur/org-knit-action@v0.1
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+#+end_src
+
+* Parameters
++ =parameter= (=default=) :: description
+** Parameter types
++ boolean :: can be =true= / =false= or =yes= / =no=
++ list :: can be a single value, comma separated values (without quotes), or a
+  python list as a string.
+** Exporting
++ =config= (boolean or list: =false=) :: Path to either an =init.el= file, or a repository url for =~/.emacs.d=.
+  This also recognises Doom configuration repositories (=~/.config/doom=).
++ =setup_file= (boolean or list: =false=) :: URL for a =#+setupfile= to use in all Org files.
++ =eval= (boolean or list: =false=) :: Whether to evaluate code in Org files. Also accepts a list of
+  globs specifying which Org files should be evaluated.
++ =tangle= (boolean or list: =false=) :: Whether to run ~org-tangle~ for each Org file. Also accepts a list of
+  globs specifying which Org files should be tangled.
++ =export= (list: =html=) :: Comma separated list of formats to export to.
++ =files= (list: =**/*.org=) :: List of org file globs to act on.
+** Publishing
++ =github_token= (string) :: The =GITHUB_TOKEN= secret. Required to push any result.
++ =branch= (string: default branch) :: The branch to push files to
++ =force_orphan= (boolean: =false=) :: Force-push the created commit as the only commit on
+  the branch.
++ =keep_files= (boolean or list: =true=) :: Whether to include non-org-related files. Also accepts a
+  list of globs.
++ =commit_message= (string: =Knit: !#!=) :: Commit message to use. =!#!= is replaced with the
+  triggering commit hash.
++ =fragile= (boolean: =true=) :: Fail the action if any export/tangle steps fail.
+
+* Example actions
+In each of the examples below, a simple preamble like so is assumed.
+#+begin_src yaml
+name: "Export"
+on: [push]
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    - name: Checkout
+      uses: actions/checkout@v2
+#+end_src
+
+** Export to HTML documentation
+#+begin_src yaml
+    - name: Export Org files to GitHub Pages
+      uses: tecosaur/org-knit-action@v0.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
+        # add PDFs
+        # export: html, pdf
+#+end_src
+
+** Include tangled files in Repository
+#+begin_src yaml
+    - name: Tangle Org files
+      uses: tecosaur/org-knit-action@v0.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        tangle: yes
+#+end_src
