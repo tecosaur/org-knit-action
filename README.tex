@@ -1,0 +1,73 @@
+% Created 2021-02-16 Tue 06:25
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{TEC}
+\date{\today}
+\title{Org knit}
+\hypersetup{
+ pdfauthor={TEC},
+ pdftitle={Org knit},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+Let someone else take care of keeping up to date tangled/woven versions of your
+Org files for public consumption.
+
+\begin{verbatim}
+- name: Export org files
+  uses: tecosaur/org-knit-action
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+\end{verbatim}
+
+\section{Parameters}
+\label{sec:org298163a}
+\begin{description}
+\item[{\texttt{parameter} (\texttt{default})}] description
+\end{description}
+\subsection{Exporting}
+\label{sec:org2765774}
+\begin{description}
+\item[{\texttt{config} (\texttt{false})}] Path to either an \texttt{init.el} file, or a repository url for \texttt{\textasciitilde{}/.emacs.d}.
+This also recognises Doom configuration repositories (\texttt{\textasciitilde{}/.config/doom}).
+\item[{\texttt{setup\_file} (\texttt{false})}] URL for a \texttt{\#+setupfile} to use in all Org files.
+\item[{\texttt{eval} (\texttt{false})}] Whether to evaluate code in Org files. Also accepts a list of
+globs specifying which Org files should be evaluated.
+\item[{\texttt{tangle} (\texttt{false})}] Whether to run \texttt{org-tangle} for each Org file. Also accepts a list of
+globs specifying which Org files should be tangled.
+\item[{\texttt{export} (\texttt{html})}] Comma separated list of formats to export to.
+\item[{\texttt{files} (\texttt{**/*.org})}] List of org file globs to act on.
+\end{description}
+\subsection{Publishing}
+\label{sec:orge7f1a35}
+\begin{description}
+\item[{\texttt{github\_token}}] The \texttt{GITHUB\_TOKEN} secret. Required to push any result.
+\item[{\texttt{branch} (default branch)}] The branch to push files to
+\item[{\texttt{force\_orphan} (\texttt{false})}] Force-push the created commit as the only commit on
+the branch.
+\item[{\texttt{keep\_files} (\texttt{true})}] Whether to include non-org-related files. Also accepts a
+list of globs.
+\item[{\texttt{commit\_message} (\texttt{Knit: !\#!})}] Commit message to use. \texttt{!\#!} is replaced with the
+triggering commit hash.
+\item[{\texttt{fragile} (\texttt{true})}] Fail the action if any export/tangle steps fail.
+\end{description}
+\end{document}
