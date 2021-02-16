@@ -43,7 +43,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "ghcr.io/tecosaur/org-knit-action:v0.2"
   args:
     - ${{ inputs.config }}
     - ${{ inputs.setupfile }}
