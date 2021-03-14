@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: ghcr.io/tecosaur/org-knit-action:v0.2
+          tags: ghcr.io/tecosaur/org-knit-action:v0.3
           push: true
 
       - name: Image digest
