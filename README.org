@@ -7,7 +7,7 @@ Org files for public consumption.
 
 #+begin_src yaml
 - name: Export org files
-  uses: tecosaur/org-knit-action@v0.2
+  uses: tecosaur/org-knit-action@v0.3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
 #+end_src
@@ -55,7 +55,7 @@ jobs:
 ** Export to HTML documentation
 #+begin_src yaml
     - name: Export Org files to GitHub Pages
-      uses: tecosaur/org-knit-action@v0.2
+      uses: tecosaur/org-knit-action@v0.3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
@@ -66,7 +66,7 @@ jobs:
 ** Include tangled files in Repository
 #+begin_src yaml
     - name: Tangle Org files
-      uses: tecosaur/org-knit-action@v0.2
+      uses: tecosaur/org-knit-action@v0.3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         tangle: yes
