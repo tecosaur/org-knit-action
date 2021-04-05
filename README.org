@@ -19,7 +19,8 @@ Org files for public consumption.
 + list :: can be a single value, comma separated values (without quotes), or a
   python list as a string.
 ** Exporting
-+ =config= (boolean or list: =false=) :: Path to either an =init.el= file, or a repository url for =~/.emacs.d=.
++ =config= (boolean or list: =false=) :: Path to either an =init.el= file, or a
+  repository url (i.e. ends with =.git=) for =~/.emacs.d=.
   This also recognises Doom configuration repositories (=~/.config/doom=).
 + =setup_file= (boolean or list: =false=) :: URL for a =#+setupfile= to use in all Org files.
 + =eval= (boolean or list: =false=) :: Whether to evaluate code in Org files. Also accepts a list of
