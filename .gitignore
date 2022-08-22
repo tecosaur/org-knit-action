@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+*.log
+tmp/
+.vscode
+.lsp
+
+*.py[cowd]
+*.egg
+build
+htmlcov
+Pipfile
