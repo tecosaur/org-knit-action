@@ -24,7 +24,7 @@ jobs:
       - name: Push to Docker Hub
         uses: docker/build-push-action@v3
         with:
-          tags: ghcr.io/tecosaur/org-knit-action:v0.3
+          tags: ghcr.io/tecosaur/org-knit-action:v0.4
           push: true
 
       - name: Image digest

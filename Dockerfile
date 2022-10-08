@@ -1,18 +1,18 @@
-FROM ubuntu:20.04
+FROM ubuntu:21.04
 
 ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN echo "Install Emacs" &&\
-  echo "\e[1A\e[K\033[1;34mInstall Emacs\033[0m" &&\
-  echo "\033[0;34mAdd Emacs PPA.\033[0m" &&\
+  # echo "\e[1A\e[K\033[1;34mInstall Emacs\033[0m" &&\
+  # echo "\033[0;34mAdd Emacs PPA.\033[0m" &&\
   apt-get update &&\
   apt-get install -y apt-utils software-properties-common sudo &&\
-  add-apt-repository -y ppa:kelleyk/emacs &&\
-  echo "\033[0;34mUpdate.\033[0m" &&\
-  apt-get update &&\
+  # add-apt-repository -y ppa:kelleyk/emacs &&\
+  # echo "\033[0;34mUpdate.\033[0m" &&\
+  # apt-get update &&\
   echo "\033[0;34mInstalling Emacs\033[0m" &&\
-  apt-get install --no-install-recommends -y emacs27-nox='27.1~1.git86d8d76aa3-kk2+20.04'
+  apt-get install --no-install-recommends -y emacs-nox
 
 RUN echo "Install utilities" &&\
   echo "\e[1A\e[K\033[1;34mInstall utilities\033[0m" &&\
@@ -105,7 +105,7 @@ RUN echo "Install Doom" &&\
   cd /home/runner/.emacs.d &&\
   git init &&\
   git remote add origin https://github.com/hlissner/doom-emacs.git &&\
-  git fetch --depth 1 origin cf5b7adb6352ff17c00d24febe4a4545c3a1170b &&\
+  git fetch --depth 1 origin 9f22a0a2a5191cf57184846281164f478df4b7ac &&\
   git checkout FETCH_HEAD &&\
   chown -R runner:runner /home/runner/.emacs.d &&\
   sudo -u runner mkdir -p /home/runner/.config/doom &&\
