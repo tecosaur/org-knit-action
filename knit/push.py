@@ -30,11 +30,10 @@ def push(work_dir: Path, I: Inputs):
     if I.force_orphan:
         run(["rm", "-rf", work_dir.absolute() / ".git"])
         git("init")
-
-    if git("show-ref", "-q", "--heads").returncode != 0:
-        git("branch", I.branch)
-
-    git("checkout", I.branch)
+        git("checkout", "--orphan", I.branch)
+    elif git("show-ref", "-q", "--heads").returncode != 0:
+        if git("branch", I.branch).returncode != 0:
+            git("checkout", "--orphan", I.branch)
 
     print(blue | "Add remote, and stage files")
 
